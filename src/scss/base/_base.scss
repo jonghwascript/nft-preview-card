@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // ==========================================
 // 모듈러 스케일 (Every Layout 간격 토큰)
 // ==========================================
@@ -22,12 +24,9 @@
 body {
   // 모듈러 스케일의 기준이 되는 줄 간격
   line-height: var(--ratio);
-  background-color: #fff;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
-  color: #222;
+  background-color: $blue-950;
+  font-family: $font-primary;
+  color: $white;
   -webkit-font-smoothing: antialiased;
 }
 
