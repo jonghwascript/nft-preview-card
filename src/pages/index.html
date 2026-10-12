@@ -3,38 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
-    <title> </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/style.css" />
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <style>
-      .attribution {
-        font-size: 0.6875rem;
-        text-align: center;
-      }
-
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style>
+    <title>Frontend Mentor | NFT preview card component</title>
   </head>
-
   <body>
-    <footer class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-      Coded by
-      <a href="https://www.frontendmentor.io/profile/jonghwascript"
-        >jonghwascript</a
-      >.
-    </footer>
+    <main class="l-home">
+      <article class="c-nft-card l-stack" aria-labelledby="card-title">
+        <a
+          class="c-nft-card__artwork l-frame"
+          href="https://www.frontendmentor.io/challenges/nft-preview-card-component-SbdUL_w0U"
+          aria-label="View Equilibrium #3429 challenge"
+        >
+          <img
+            class="c-nft-card__image"
+            src="./images/image-equilibrium.jpg"
+            alt="Glowing translucent cube floating over a blue surface"
+            width="302"
+            height="302"
+          />
+        </a>
+        <div class="c-nft-card__intro l-stack" data-space="normal">
+          <h1 class="c-nft-card__title" id="card-title">
+            <a
+              class="c-nft-card__link"
+              href="https://www.frontendmentor.io/challenges/nft-preview-card-component-SbdUL_w0U"
+              >Equilibrium #3429</a
+            >
+          </h1>
+          <p class="c-nft-card__description">
+            Our Equilibrium collection promotes balance and calm.
+          </p>
+        </div>
+        <div
+          class="c-nft-card__meta l-cluster"
+          data-justify="between"
+          data-gap="small"
+        >
+          <p
+            class="c-nft-card__price l-cluster"
+            data-justify="start"
+            data-gap="small"
+          >
+            <img
+              src="./images/icon-ethereum.svg"
+              alt=""
+              width="11"
+              height="18"
+            />0.041 ETH
+          </p>
+          <p
+            class="c-nft-card__time l-cluster"
+            data-justify="start"
+            data-gap="small"
+          >
+            <img src="./images/icon-clock.svg" alt="" width="17" height="17" />3
+            days left
+          </p>
+        </div>
+        <div
+          class="c-nft-card__creator l-cluster"
+          data-justify="start"
+          data-gap="normal"
+        >
+          <img
+            class="c-nft-card__avatar"
+            src="./images/image-avatar.png"
+            alt=""
+            width="33"
+            height="33"
+          />
+          <p>
+            Creation of
+            <span class="c-nft-card__creator-name">Jules Wyvern</span>
+          </p>
+        </div>
+      </article>
+    </main>
   </body>
 </html>
