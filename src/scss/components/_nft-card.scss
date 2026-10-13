@@ -1,0 +1,118 @@
+@use 'sass:color';
+@use 'sass:math';
+@use '../abstracts' as *;
+
+%focus-ring {
+  outline: 2px solid $cyan-400;
+  outline-offset: 4px;
+}
+
+// ------------------------------------------
+// NFT 미리보기 카드 (세로 간격은 l-stack 기본값 24px)
+// ------------------------------------------
+.c-nft-card {
+  inline-size: min(100%, 21.875rem); // 350px, 좁은 화면에서는 줄어든다
+  padding: var(--s1);
+  border-radius: 15px;
+  background: $blue-900;
+  // 글꼴을 크게 키운 좁은 화면에서 긴 단어가 카드를 밀어내지 않도록 필요할 때만 끊는다
+  overflow-wrap: anywhere;
+  box-shadow: 0 25px 50px rgb(0 0 0 / 9.53%);
+  outline: 0.125rem solid transparent; // 강제 색상 모드에서 카드 경계 표시
+
+  // l-frame의 기본 16:9를 정사각형으로 바꾼다.
+  // 이미지와 오버레이를 같은 칸에 겹치도록 l-frame의 flex를 grid로 바꾼다 (Grid Stack).
+  &__artwork {
+    --n: 1;
+    --d: 1;
+    display: grid;
+    border-radius: 8px;
+
+    // hover 오버레이는 장식이므로 HTML 대신 가상 요소로 그린다
+    &::after {
+      content: '';
+      grid-area: 1 / 1; //1번 줄에서 시작해서 딱 한 칸(auto)만 차지
+      // l-frame의 align-items: center를 따르면 내용 없는 가상 요소의 높이가 0이 된다
+      place-self: stretch;
+      background: color.change($cyan-400, $alpha: 0.5)  // 배경에 50% 반투명한 청록색을 깐다.
+        url('../images/icon-view.svg') center no-repeat;
+      opacity: 0;
+      transition: opacity 180ms ease;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &:is(:hover, :focus-visible)::after {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      @extend %focus-ring;
+    }
+  }
+
+  &__image {
+    grid-area: 1 / 1; //1번 줄에서 시작해서 딱 한 칸(auto)만 차지
+  }
+
+  &__title {
+    @include font-style($font-size-heading, 600, 1.25);
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: $cyan-400;
+    }
+
+    &:focus-visible {
+      @extend %focus-ring;
+    }
+  }
+
+  &__description {
+    @include font-style($font-size-body, 300, math.div(26, 18)); // 줄 간격 26px
+    color: $blue-500;
+  }
+
+  &__price {
+    @include font-style($font-size-meta, 600, 1.25);
+    color: $cyan-400;
+    white-space: nowrap;
+  }
+
+  &__time {
+    @include font-style($font-size-meta, 400, 1.25);
+    color: $blue-500;
+    white-space: nowrap;
+  }
+
+  &__creator {
+    padding-block-start: var(--s1);
+    border-block-start: 1px solid $blue-800;
+    @include font-style($font-size-meta, 400, 1.25);
+    color: $blue-500;
+  }
+
+  &__avatar {
+    flex: none;
+    inline-size: 2.0625rem; // 33px
+    block-size: 2.0625rem;
+  }
+
+  &__creator-name {
+    color: $white;
+  }
+
+  &:has(.c-nft-card__artwork:is(:hover, :focus-visible)){
+    .c-nft-card__creator-name,
+    .c-nft-card__title {
+      color: $cyan-400;
+    }
+  }
+}
